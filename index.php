@@ -1,6 +1,7 @@
 <?php    
     require_once("inc/header.php");
     $data = Session::getStart();
+
     if (isset($data->logged_in)) {
         if ($data->role == "admin") {
             if (isset($data->create_user)) {
@@ -15,12 +16,9 @@
         }
         else {
             require_once ("inc/engine/entry.php");
-            
         }
     } else {
         require_once ("inc/engine/login.php");
-        
     }
-
     require_once("inc/footer.php")
 ?>
