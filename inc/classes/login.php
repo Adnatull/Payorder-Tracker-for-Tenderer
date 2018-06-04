@@ -5,12 +5,23 @@ class Login {
     public $errors = array();
     public $messages = array();
     
+
+    private static $instance;
+    
     public function __construct() {
 
         if (isset($_POST['login'])) {            
             $this->dologin();
         }
     }
+
+    public static function getLogin() {
+        if (!isset(self::$instance)) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+
     private function dologin() {
         $this->db_connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
         if ($this->db_connection->connect_error) {
@@ -24,8 +35,6 @@ class Login {
         if (!$this->db_connection->connect_errno) {
             $username = $this->db_connection->real_escape_string($_POST['username']);
             $password = $this->db_connection->real_escape_string($_POST['password']);
-            
-            
 
             $sql = "SELECT * 
                     FROM users
@@ -33,9 +42,11 @@ class Login {
             $result = $this->db_connection->query($sql);
             if ($result->num_rows == 1) {
                 $userdata = $result->fetch_object();
+                $data = Session::getStart();
                 $data->username = $userdata->username;
                 $data->role = $userdata->role;
                 $data->logged_in = TRUE;
+                header("Location: index.php");
             } else {
                 array_push($this->errors, "Wrong username/password! Try again.");
             } 

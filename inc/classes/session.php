@@ -4,7 +4,7 @@
         const SESSION_STARTED = TRUE;
         const SESSION_NOT_STARTED = FALSE;
         
-        private $sessionState = self::SESSION_NOT_STARTED;
+        private static $sessionState = self::SESSION_NOT_STARTED;
                 
         private static $start;
                 
@@ -20,10 +20,10 @@
                 
         public function startSession()
         {
-            if ( $this->sessionState == self::SESSION_NOT_STARTED ) {
-                $this->sessionState = session_start();
+            if ( self::$sessionState == self::SESSION_NOT_STARTED ) {
+                self::$sessionState = session_start();
             }            
-            return $this->sessionState;
+            return self::$sessionState;
         }
                
         public function __set( $name , $value )  {

@@ -1,14 +1,16 @@
 <?php
 
+
 require_once ($_SERVER['DOCUMENT_ROOT']."/inc/classes/login.php");
-   
-$login = new Login();
+
+
+$login = Login::getLogin();
 
 
 
 if ($login->errors) {
     
-    header("Location: search.php");
+   // header("Location: search.php");
     foreach ($login->errors as $error) {
         echo $error;
        

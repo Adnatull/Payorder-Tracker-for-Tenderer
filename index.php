@@ -1,24 +1,23 @@
 <?php    
-    require_once("inc/header.php");
-    $data = Session::getStart();
+    require_once ($_SERVER['DOCUMENT_ROOT']."/inc/header.php");
 
     if (isset($data->logged_in)) {
         if ($data->role == "admin") {
             if (isset($data->create_user)) {
-                require_once ("inc/engine/create_user.php");
+                require_once ($_SERVER['DOCUMENT_ROOT']."/inc/engine/create_user.php");
             } else if (isset($data->list_users)) {
-                require_once ("inc/engine/list_users.php");
+                require_once ($_SERVER['DOCUMENT_ROOT']."/inc/engine/list_users.php");
             } else if (isset($data->edit_user)) {
-                require_once ("inc/engine/edit_user.php");
+                require_once ($_SERVER['DOCUMENT_ROOT']."/inc/engine/edit_user.php");
             } else {
-                require_once ("inc/engine/dashboard.php");
+                require_once ($_SERVER['DOCUMENT_ROOT']."/inc/engine/dashboard.php");
             }    
         }
         else {
-            require_once ("inc/engine/entry.php");
+            require_once ($_SERVER['DOCUMENT_ROOT']."/inc/engine/entry.php");
         }
     } else {
-        require_once ("inc/engine/login.php");
+        require_once ($_SERVER['DOCUMENT_ROOT']."/inc/engine/login.php");
     }
-    require_once("inc/footer.php")
+    require_once($_SERVER['DOCUMENT_ROOT']."/inc/footer.php")
 ?>

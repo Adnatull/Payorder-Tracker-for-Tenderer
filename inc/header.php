@@ -1,6 +1,8 @@
 <?php
-require_once ("db/db.php");
-require_once ("classes/session.php");
+require_once ($_SERVER['DOCUMENT_ROOT']."/inc/db/db.php");
+require_once ($_SERVER['DOCUMENT_ROOT']."/inc/classes/session.php");
+
+$data = Session::getStart();
 ?>
 <!DOCTYPE html>
 <html>
@@ -13,4 +15,8 @@ require_once ("classes/session.php");
     <script src="assets/js/main.js"></script>
 </head>
 <body>
-    
+
+<?php
+require_once ($_SERVER['DOCUMENT_ROOT']."/inc/navbar.php");
+?>
+
