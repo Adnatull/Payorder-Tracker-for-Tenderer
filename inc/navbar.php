@@ -3,11 +3,20 @@
         $data->create_user = TRUE;
         header("Location: index.php");
     }
+    if(isset($_GET['logout'])) {
+        session_destroy();
+        unset($_SESSION);
+        header("Location: index.php");
+    }
 ?>
 <a href="index.php">Home</a>
-<?php if($data->role == "admin"): ?>
-    <h1>Welcome admin</h1>
-    <a href="index.php?create_user='1'">Create User</a>
-    <h1>Create User</h1>
-    <h1>Search</h1>
+<?php if ($data->logged_in): ?>
+    <?php if($data->role == "admin"): ?>
+        <h1>Welcome admin</h1>
+        <a href="index.php?create_user='1'">Create User</a>
+        <h1>See all users</h1>
+        <h1>See all payordes info</h1>
+        <h1>Search</h1>
+    <?php endif ?>
+    <a href="index.php?logout='1'">Logout</a>
 <?php endif ?>

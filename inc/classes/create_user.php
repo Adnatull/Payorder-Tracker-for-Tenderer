@@ -56,11 +56,11 @@ class Create {
                 if ($result) {
                     $data = Session::getStart();
                     
-                    echo "OK";
                     unset($data->create_user);
+                    
                     header("Location: index.php");
                 } else {
-                    array_push($this->errors, "username/password already exists!");
+                    array_push($this->errors, "username already exists");
                 }
             }          
         } else {

@@ -45,6 +45,7 @@ class Login {
                 $data = Session::getStart();
                 $data->username = $userdata->username;
                 $data->role = $userdata->role;
+                $data->id = $userdata->id;
                 $data->logged_in = TRUE;
                 header("Location: index.php");
             } else {
@@ -53,6 +54,16 @@ class Login {
         } else {
             array_push($this->errors, "Database connection error!");
         }
+    }
+
+    public function listUsers() {
+        if ($this->db_connection == null) {
+            $this->db_connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        }
+        $sql = "SELECT * FROM users";
+        $result = $this->db_connection->query($sql);
+        $userdata = $result->fetch_object();
+        return $userdata;
     }
 }
 ?>
