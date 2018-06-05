@@ -11,6 +11,10 @@ class Entry {
         if (isset($_POST['entry'])) {
             $this->doEntry();
         }
+
+        if (isset($_POST['withdraw'])) {
+            $this->doWithdraw();
+        }
         
     }
 
@@ -66,11 +70,61 @@ class Entry {
                     echo "OK inserted";
                     
                 } else {
-                    array_push($this->errors, "Something went wrong");
+                    array_push($this->errors, "This payorder already exists");
                 }
             }          
         } else {
             array_push($this->errors, "Database connection error!");
         }
+    }
+
+    public function doWithdraw() {
+        if ($this->db_connection == null) {
+            $this->db_connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        }
+
+        if ($this->db_connection->connect_error) {
+            array_push($this->errors, "Connection Error");
+        }
+
+        if (!$this->db_connection->set_charset("utf8")) {
+            $this->errors[] = $this->db_connection->error;
+        }
+
+        if (!$this->db_connection->connect_errno) {
+            $payorderno = $this->db_connection->real_escape_string($_POST['payorderno']);
+            $withdrawdate = $this->db_connection->real_escape_string($_POST['withdrawdate']);
+            
+            
+            $data = Session::getStart();
+            $uploadedby = $data->id;
+            
+
+            if (empty($payorderno)) {
+                array_push($this->errors, "Payorder NO. is required");
+            }
+            if(empty($withdrawdate)) {
+                array_push($this->errors, "Withdraw date is required");
+            }
+                        
+
+            if (count($this->errors) == 0) {
+                
+                $sql = "UPDATE `payorder` SET  `withdrawndate`='$withdrawdate',`withdrawnby`='$uploadedby' WHERE `payorderno`='$payorderno' AND `withdrawndate` IS NULL ";
+
+                $result = $this->db_connection->query($sql);
+                if ($result) {
+                                        
+                    echo "<br> OK Updated";
+                    
+                } else {
+                    array_push($this->errors, "Either payorder does not exist or it is already withdrawn");
+                }
+            }          
+        } else {
+            array_push($this->errors, "Database connection error!");
+        }
+
+
     }
 }

@@ -11,6 +11,7 @@ class Create {
         if (isset($_POST['create'])) {
             $this->doCreate();
         }
+
     }
 
     public static function getCreateUser() {
@@ -57,6 +58,7 @@ class Create {
                     $data = Session::getStart();
                     
                     unset($data->create_user);
+                    $data->current_page = "Dashboard";
                     
                     header("Location: index.php");
                 } else {
@@ -67,4 +69,5 @@ class Create {
             array_push($this->errors, "Database connection error!");
         }
     }
+   
 }

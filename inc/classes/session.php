@@ -8,7 +8,9 @@
                 
         private static $start;
                 
-        private function __construct() { }
+        private function __construct() {
+            $this->current_page = "Login Page";
+        }
                 
         public static function getStart()  {
             if ( !isset(self::$start))  {

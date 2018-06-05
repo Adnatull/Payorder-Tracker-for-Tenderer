@@ -1,6 +1,7 @@
 <?php
     if(isset($_GET['create_user'])) {
         $data->create_user = TRUE;
+        $data->current_page = "Create new user";
         header("Location: index.php");
     }
     if(isset($_GET['logout'])) {

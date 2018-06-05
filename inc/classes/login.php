@@ -47,6 +47,11 @@ class Login {
                 $data->role = $userdata->role;
                 $data->id = $userdata->id;
                 $data->logged_in = TRUE;
+                if ($data->role == "admin") {
+                    $data->current_page = "Dashboard";
+                } else {
+                    $data->current_page = "Entry Page";
+                }
                 header("Location: index.php");
             } else {
                 array_push($this->errors, "Wrong username/password! Try again.");
