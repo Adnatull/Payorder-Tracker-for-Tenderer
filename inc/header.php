@@ -29,6 +29,7 @@ $data = Session::getStart();
     <script src="assets/js/main.js"></script>
 </head>
 <body>
+<h1 class="text-warning">Hi pabel</h1>
 
 <?php
 require_once ($_SERVER['DOCUMENT_ROOT']."/inc/navbar.php");
