@@ -19,10 +19,17 @@ $data = Session::getStart();
         ?>
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/bootstrap.css" />
+    <link rel="stylesheet" href="assets/fontawesome-all.css">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/main.css" />
+
+
+    <script src="assets/js/jquery-3.3.1.js"></script>
+    <script src="assets/js/bootstrap.js"></script>
     <script src="assets/js/main.js"></script>
 </head>
 <body>
+<h1 class="text-warning">Hi pabel</h1>
 
 <?php
 require_once ($_SERVER['DOCUMENT_ROOT']."/inc/navbar.php");
