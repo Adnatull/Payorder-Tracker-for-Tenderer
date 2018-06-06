@@ -10,7 +10,12 @@
         header("Location: index.php");
     }
 ?>
-<a href="index.php">Home</a>
+<a href="index.php" class="float left">Home</a>
+<a href="index.php" class="float right pl-5">Login</a>
+
+
+
+
 <?php if ($data->logged_in): ?>
     <?php if($data->role == "admin"): ?>
         <h1>Welcome admin</h1>
