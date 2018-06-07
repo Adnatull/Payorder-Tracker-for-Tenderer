@@ -59,8 +59,7 @@ class Entry {
             }
             if(empty($uploadedby)) {
                 array_push($this->errors, "You are not loggedin");
-            }
-            
+            }            
 
             if (count($this->errors) == 0) {
                 $sql = "INSERT INTO `payorder`( `particular`, `tenderid`, `createdby`, `payorderno`, `payorderamount`, `createddate`) VALUES ('$particular','$tenderid', '$uploadedby' ,'$payorderno','$payorderamount', '$cdate' )";
