@@ -1,28 +1,31 @@
-<?php
-    if(isset($_GET['create_user'])) {
-        $data->create_user = TRUE;
-        $data->current_page = "Create new user";
-        header("Location: index.php");
-    }
-    if(isset($_GET['logout'])) {
-        session_destroy();
-        unset($_SESSION);
-        header("Location: index.php");
-    }
-?>
-<a href="index.php" class="float left">Home</a>
-<a href="index.php" class="float right pl-5">Login</a>
 
 
 
 
-<?php if ($data->logged_in): ?>
-    <?php if($data->role == "admin"): ?>
-        <h1>Welcome admin</h1>
-        <a href="index.php?create_user='1'">Create User</a>
-        <h1>See all users</h1>
-        <h1>See all payordes info</h1>
-        <h1>Search</h1>
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+    <span class="navbar-brand mb-0 h1">J Deluxe Channel Ltd.</span>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <?php if ($data->logged_in): ?>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <?php if ($data->role == "admin"): ?>
+            <a class="nav-link" href="index.php?create_user='1'"> Create User <span class="sr-only">(current)</span></a>
+
+          <?php endif ?>
+        </li>
+      </ul>
+    
+        <ul class="navbar-nav  my-2 my-lg-0">
+        <li class="nav-item active">
+            <a class="nav-link" href="index.php?logout='1'">Logout<span class="sr-only">(current)</span></a>
+        </li>      
+        </ul>
     <?php endif ?>
-    <a href="index.php?logout='1'">Logout</a>
-<?php endif ?>
+
+    
+  </div>
+</nav>

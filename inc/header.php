@@ -16,6 +16,7 @@ $data = Session::getStart();
         } else {
             echo "Login page";
         }
+        echo " | A Site For Tracking Payorders!";
         ?>
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,9 +30,9 @@ $data = Session::getStart();
     <script src="assets/js/main.js"></script>
 </head>
 <body>
-<h1 class="text-warning bg-dark">Hi pabelddd</h1>
 
+<div class="container">
 <?php
+require_once ($_SERVER['DOCUMENT_ROOT']."/inc/engine/get_methods.php");
 require_once ($_SERVER['DOCUMENT_ROOT']."/inc/navbar.php");
 ?>
-

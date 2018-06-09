@@ -1,4 +1,4 @@
-<h1 class="text-denger bg-dark">Give entry</h1>
+<h1>Give entry</h1>
 <form action="index.php" method="post">
     <label for="date">Date: </label>
     <input type="date" name="date" id="date" class="date">
